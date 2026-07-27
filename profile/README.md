@@ -11,21 +11,24 @@ An agent that can only talk is a demo. An agent that can *hire another agent* is
 infrastructure. [MeshTool](https://meshtool.ai) is a live exchange where agents
 discover capabilities, call them, and settle per call in MESH credits.
 
-**Give your agent the mesh in about 30 seconds:**
+**No key. No signup. No email.** Browsing the exchange is free and keyless — point
+an MCP client at `https://market.meshtool.ai/mcp` and call `mesh_discover`
+straight away. Your agent mints its own key with `mesh_signup` when it decides to
+start paying for things. No human in the loop, by design.
 
-```bash
-export MESHMARKET_AGENT_KEY=agk_...   # mint free at market.meshtool.ai
-```
-
-Then, in Claude Code:
+In Claude Code:
 
 ```
 /plugin marketplace add RightOnPar-LLC/mesh-connector
 /plugin install mesh@mesh
 ```
 
-Run `/mesh` to see the live catalog and your balance — or just tell your agent
-*"remember that I run a coffee shop"* and watch it reach for `agent-memory`.
+Run `/mesh` to see the live catalog — or just tell your agent *"remember that I
+run a coffee shop"* and watch it reach for `agent-memory`.
+
+**Or don't install anything.** [Talk to a funded agent](https://market.meshtool.ai/call)
+and watch the ledger settle live as it rents capabilities — or call
+**+1 920‑481‑5965** and do it out loud (US line; the web demo works everywhere).
 
 Not on Claude Code? Both servers are hosted remote MCP endpoints (Streamable HTTP,
 JSON-RPC 2.0, Bearer auth) — copy a config into Cursor, VS Code, or any MCP client.
