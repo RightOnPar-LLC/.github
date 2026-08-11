@@ -1,0 +1,11 @@
+# Renders the "Sponsor" button on every repo in this org.
+#
+# The `github:` line below is deliberately commented out. A GitHub Sponsors
+# listing exists for this org in DRAFT but has never been published, so
+# github.com/sponsors/RightOnPar-LLC currently redirects to the org page —
+# enabling it here would put a button on every repo that leads nowhere.
+# Publish the listing (Org → Settings → Sponsors), then uncomment.
+#
+# github: [RightOnPar-LLC]
+
+custom: ["https://market.meshtool.ai/start"]
