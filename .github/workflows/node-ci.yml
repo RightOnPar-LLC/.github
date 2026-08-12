@@ -140,5 +140,5 @@ jobs:
         run: |
           {
             echo "> [!CAUTION]"
-            echo "> npm audit found vulnerabilities at or above '${D}AUDIT_LEVEL', but this repo runs with audit-blocking disabled, so the job was allowed to pass. Set audit-blocking to true once the backlog clears."
-          } >> "${D}GITHUB_STEP_SUMMARY"
+            echo "> npm audit found vulnerabilities at or above '$AUDIT_LEVEL', but this repo runs with audit-blocking disabled, so the job was allowed to pass. Set audit-blocking to true once the backlog clears."
+          } >> "$GITHUB_STEP_SUMMARY"
