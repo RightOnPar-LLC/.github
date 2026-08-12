@@ -1,0 +1,144 @@
+# Org-wide Node CI gate for RightOnPar-LLC.
+#
+# THIS FILE IS PUBLIC. It lives in a public repository so private repos across
+# the org can call it. Keep it free of internal hostnames, secret names, service
+# topology, and brand references. It accepts no secrets, by design.
+#
+# Hardening, carried over from the org's existing hardened CI:
+#   - GitHub-owned actions only, pinned to full commit SHAs (tags are mutable,
+#     SHAs are not)
+#   - the workflow token is read-only (least privilege)
+#   - dependencies install exactly from the committed lockfile (npm ci)
+#   - every job is time-boxed; GitHub's default is 360 minutes, which is six
+#     hours of billable minutes for one hung process
+#
+# Verification steps use `npm run --if-present`, so a repo runs exactly the
+# scripts it defines and is never red for one it never had. Nothing to opt into,
+# nothing to forget. The cost of that is silence: a repo with no tests would go
+# green on `npm ci` alone. So the job ALWAYS writes a step summary naming what
+# ran and what was absent, and says plainly when a repo has no test or coverage
+# script, so a green check is legible as "installed and audited" rather than
+# "verified".
+name: Node CI (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      node-versions:
+        description: JSON array of Node versions for the test matrix
+        type: string
+        default: '["22.x", "24.x"]'
+      runs-on:
+        description: Runner label
+        type: string
+        default: ubuntu-latest
+      working-directory:
+        description: Subdirectory to run in, for monorepos
+        type: string
+        default: .
+      timeout-minutes:
+        description: Job time box. Caller jobs cannot set this themselves.
+        type: number
+        default: 15
+      audit-level:
+        description: npm audit severity that counts as a finding
+        type: string
+        default: high
+      audit-blocking:
+        description: >-
+          Whether an audit finding fails the job. Defaults to false so a repo
+          with a known backlog can adopt CI today; flip to true per-repo once
+          that repo's backlog clears.
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ${{ inputs.runs-on }}
+    timeout-minutes: ${{ inputs.timeout-minutes }}
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ${{ fromJSON(inputs.node-versions) }}
+    name: build-and-test (node ${{ matrix.node-version }})
+    defaults:
+      run:
+        working-directory: ${{ inputs.working-directory }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: npm
+
+      - name: Install dependencies (lockfile-exact)
+        run: npm ci
+
+      - name: Dependency vulnerability audit
+        id: audit
+        continue-on-error: ${{ !inputs.audit-blocking }}
+        run: npm audit --audit-level=${{ inputs.audit-level }}
+
+      - name: Lint
+        run: npm run --if-present lint
+
+      - name: Format check
+        run: npm run --if-present format:check
+
+      - name: Typecheck
+        run: npm run --if-present typecheck
+
+      - name: Build
+        run: npm run --if-present build
+
+      - name: Unit tests
+        run: npm run --if-present test
+
+      - name: Coverage
+        run: npm run --if-present coverage
+
+      - name: Smoke test
+        run: npm run --if-present smoke
+
+      # Makes absence loud. Without this, a repo defining none of the above gets
+      # a green tick indistinguishable from a fully tested one.
+      - name: Verification surface
+        if: always()
+        env:
+          NODE_LABEL: ${{ matrix.node-version }}
+        run: |
+          node -e '
+            const fs = require("fs");
+            const known = ["lint","format:check","typecheck","build","test","coverage","smoke"];
+            const s = (JSON.parse(fs.readFileSync("package.json","utf8")).scripts) || {};
+            const ran = known.filter(k => s[k]);
+            const absent = known.filter(k => !s[k]);
+            const out = [
+              "### Node CI verification surface (node " + process.env.NODE_LABEL + ")",
+              "",
+              "**Ran:** " + (ran.length ? ran.join(", ") : "nothing"),
+              "",
+              "**Absent:** " + (absent.length ? absent.join(", ") : "none"),
+              ""
+            ];
+            if (!s.test && !s.coverage) {
+              out.push("> [!WARNING]");
+              out.push("> This repo defines no test or coverage script. A green check here means the dependency tree installed and audited. It does NOT mean the code was verified.");
+            }
+            fs.appendFileSync(process.env.GITHUB_STEP_SUMMARY, out.join("\n") + "\n");
+          '
+
+      - name: Note non-blocking audit finding
+        if: always() && steps.audit.outcome == 'failure'
+        env:
+          AUDIT_LEVEL: ${{ inputs.audit-level }}
+        run: |
+          {
+            echo "> [!CAUTION]"
+            echo "> npm audit found vulnerabilities at or above '$AUDIT_LEVEL', but this repo runs with audit-blocking disabled, so the job was allowed to pass. Set audit-blocking to true once the backlog clears."
+          } >> "$GITHUB_STEP_SUMMARY"
