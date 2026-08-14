@@ -1,0 +1,10 @@
+# Blank issues stay enabled on purpose — a solo-maintained org would rather
+# hear from you in the wrong format than not hear from you.
+blank_issues_enabled: true
+contact_links:
+  - name: Security report
+    url: https://github.com/RightOnPar-LLC/.github/blob/main/SECURITY.md
+    about: Never open a public issue for a vulnerability — this is the private path.
+  - name: MeshTool platform
+    url: https://meshtool.ai
+    about: Docs and the live platform, if your question is "how do I use this" rather than "this is broken".

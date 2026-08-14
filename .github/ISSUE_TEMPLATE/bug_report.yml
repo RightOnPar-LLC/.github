@@ -1,0 +1,38 @@
+name: Bug report
+description: Something ran and did the wrong thing
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A copy-paste of the failing command beats a description of it.
+  - type: textarea
+    id: what-ran
+    attributes:
+      label: What you ran
+      description: The exact command or call, copy-pasted.
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened instead
+      description: Full output or error, copy-pasted. Trim secrets, keep the rest.
+      render: shell
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: OS, runtime version, and the MCP client if one is involved (Claude Desktop, Cursor, …).
+      placeholder: "Windows 11 · node 22 · Claude Desktop"
+    validations:
+      required: false
