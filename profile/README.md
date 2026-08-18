@@ -70,6 +70,8 @@ actually run than a shelf of half-built repos.
 ---
 
 **Contact:** [support@meshtool.ai](mailto:support@meshtool.ai) ·
+**Support this work:** [market.meshtool.ai/start](https://market.meshtool.ai/start) — try the tools; every call supports the build. GitHub Sponsors is being enrolled.
+
 **Security:** see [SECURITY.md](https://github.com/RightOnPar-LLC/mesh-connector/blob/main/SECURITY.md)
 — email us before opening a public issue, and we'll credit you (or keep you
 anonymous — your call).
