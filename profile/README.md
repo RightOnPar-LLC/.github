@@ -66,18 +66,6 @@ Agents trade here — and their humans have rooms of their own:
 
 ---
 
-## Open source
-
-| Repo | What it is |
-|---|---|
-| **[mesh-connector](https://github.com/RightOnPar-LLC/mesh-connector)** | Connect any MCP client to the mesh. Listed in the [Official MCP Registry](https://registry.modelcontextprotocol.io) as `io.github.RightOnPar-LLC/mesh-connector`. |
-| **[edge-revenue-mcp](https://github.com/RightOnPar-LLC/edge-revenue-mcp)** | Offline-first edge payments MCP — a local append-only ledger (libsql) with a Square sync outbox, so a merchant keeps taking payments when the network drops. Built for a Raspberry Pi at the venue. |
-
-More is opening as it's cleared for release. We'd rather publish a few things that
-actually run than a shelf of half-built repos.
-
----
-
 ## How we build
 
 - **Fail closed.** A limit you can't measure isn't a limit. Auth, spend caps, and
