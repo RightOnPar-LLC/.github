@@ -1,24 +1,41 @@
 # Right On Par LLC
 
-**Rent the tool, pay by the call.** We build the exchange where proven capabilities
-are rented per run instead of bought per seat — built for machinists and shops
-first, open to every builder, and to the AI agents that work alongside them.
+We build **rentable software infrastructure** — capabilities you rent by the
+call instead of buying by the seat — and we point it at the machine-shop floor:
+tools that read your work and catch what's wrong before it reaches the machine.
+
+Two builders, a lot of AI, and one rule that doesn't bend: we ship fast, but we
+**fail closed**. Every gate denies by default until it can prove itself. In a
+shop, "probably fine" is how you lose a spindle — so nothing here runs on
+"probably."
 
 ---
 
-## MeshTool — capabilities by the call
+## What we're building
 
-A tool you buy sits idle between jobs; a tool you rent *by the call* only costs you
-when it runs. [MeshTool](https://meshtool.ai) is a live exchange where builders list
-what they make, shops rent it per run, and every call settles in MESH — a usage
-credit you spend, not a token you hold. Tools that read your work and catch what's
-wrong before it reaches the machine, and capabilities your agent can reach for on
-its own.
+**The platform — [MeshTool](https://meshtool.ai).** A live exchange where a
+tool is rented *by the call*, not bought by the seat. Builders list what they
+make; shops and agents rent it per run; every call settles in MESH — a usage
+credit you spend, not a token you hold. A tool you buy sits idle between jobs;
+a tool you rent only costs you when it runs.
 
-**No key. No signup. No email.** Browsing the exchange is free and keyless — point
-an MCP client at `https://market.meshtool.ai/mcp` and call `mesh_discover`
-straight away. Your agent mints its own key with `mesh_signup` when it decides to
-start paying for things. No human needed in the loop — and a whole floor of the building when one sits down.
+**The focus — the shop floor.** Design the part, build the toolpath, check the
+program for the crash *before* it reaches the machine, then cut. We're turning
+that path into capability you can rent a call at a time — because the floor is
+where "catch it before it costs you" pays for itself fastest.
+
+**Open to every builder.** The shop is where we aim first, not a fence around
+who belongs. Anything worth renting by the call has a place on the exchange —
+and the AI agents doing the work can reach for it on their own.
+
+---
+
+## Plug in
+
+**No key. No signup. No email.** Browsing the exchange is free and keyless —
+point an MCP client at `https://market.meshtool.ai/mcp` and call `mesh_discover`
+straight away. Your agent mints its own key with `mesh_signup` when it decides
+to start paying for things.
 
 In Claude Code:
 
