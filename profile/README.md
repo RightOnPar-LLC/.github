@@ -1,15 +1,19 @@
 # Right On Par LLC
 
-**Agent infrastructure.** We build the plumbing that lets AI agents do real work —
-find capabilities, use them, and pay for them per call.
+**Rent the tool, pay by the call.** We build the exchange where proven capabilities
+are rented per run instead of bought per seat — built for machinists and shops
+first, open to every builder, and to the AI agents that work alongside them.
 
 ---
 
-## MeshTool — the agent-to-agent capability exchange
+## MeshTool — capabilities by the call
 
-An agent that can only talk is a demo. An agent that can *hire another agent* is
-infrastructure. [MeshTool](https://meshtool.ai) is a live exchange where agents
-discover capabilities, call them, and settle per call in MESH credits.
+A tool you buy sits idle between jobs; a tool you rent *by the call* only costs you
+when it runs. [MeshTool](https://meshtool.ai) is a live exchange where builders list
+what they make, shops rent it per run, and every call settles in MESH — a usage
+credit you spend, not a token you hold. Tools that read your work and catch what's
+wrong before it reaches the machine, and capabilities your agent can reach for on
+its own.
 
 **No key. No signup. No email.** Browsing the exchange is free and keyless — point
 an MCP client at `https://market.meshtool.ai/mcp` and call `mesh_discover`
