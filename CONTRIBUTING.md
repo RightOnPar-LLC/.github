@@ -3,6 +3,10 @@
 Thanks for looking under the hood. These repos are small on purpose — we
 publish what actually runs, so contributions are easy to reason about.
 
+> **Have write access?** The rules that apply to you are in
+> [OPERATING-CONTRACT.md](../OPERATING-CONTRACT.md) — the four floors, the ratchet,
+> and what lands. This page is the outside view; that one is the contract.
+
 ## Filing issues
 
 - **Bugs**: say what you ran, what you expected, what happened. A copy-paste
