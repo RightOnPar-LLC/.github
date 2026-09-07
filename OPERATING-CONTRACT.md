@@ -4,52 +4,65 @@
 owner, his brother, and the agents; tomorrow whoever ships the creator software
 with us.
 
-`CONTRIBUTING.md` is for people looking under the hood from outside. This is for
-people who can merge. Different audience, different rules, higher stakes.
+`CONTRIBUTING.md` is the outside view. This is for people who can merge.
 
-Read it once properly. It is short because every rule in it was paid for.
+**Every rule below carries the thing that produced it.** Not a principle
+someone liked the sound of — a receipt. Where a rule has no receipt, it says so.
+That is deliberate: a rule you cannot trace to a failure is a rule nobody will
+follow under pressure.
+
+Most of the receipts are from **2026-09-07**, a single day of building across
+this estate. That is not a coincidence. One honest day produces more rules than
+a year of good intentions.
 
 ---
 
-## 0 · The one thing to understand first
+## 0 · The idea underneath all of it
 
 **A rule you have to remember is a hope. A rule a machine checks is a rule.**
 
-That is the organising idea behind everything below. Where you see a guideline
-here, look for the check that enforces it — a selftest, a hook, a required
-status. Where there is no check yet, the guideline is on trust, and the right
-response to noticing that is to build the check, not to write the rule louder.
+*Receipt:* a sweep reported "rebuilt from scratch instead of finished once" five
+separate times. Four hours later, the same agent hand-wrote a QR encoder that
+already existed in three places, on a dark background, and shipped a card no
+camera could read. The rule existed. It had just been re-learned. It still
+failed.
 
-You will find that written into the code in a dozen places. It is not a slogan;
-it is why this estate works with as few people as it has.
+The fix was not a stronger reminder. It was a `PreToolUse` hook and an index of
+capabilities that keep getting rewritten.
+
+Where you see a guideline here, look for the check. Where there is none, the
+guideline is on trust — and the right response to noticing that is to build the
+check, not to write the rule louder.
 
 ---
 
 ## 1 · The four floors
 
-Four actions are **never** taken by anyone except the owner, no matter how
-obvious, urgent, or small they look:
+Never taken by anyone but the owner, no matter how obvious, urgent, or small:
 
-| floor | what it covers |
+| floor | covers |
 |---|---|
 | **Money out** | any new spend, any charge, any payment method |
-| **Outward publish or send** | anything that reaches a person outside the company — a post, an email, an SMS, a listing |
-| **Credential or access to a person** | adding someone to an org, granting a role, minting them a key |
-| **Irreversible deletes** | deleting a repo, a bucket, a database, a record that has no undo |
+| **Outward publish or send** | anything reaching a person outside the company |
+| **Credential or access to a person** | adding someone to an org, granting a role, minting a key |
+| **Irreversible deletes** | a repo, a bucket, a database, anything with no undo |
 
-Everything else is yours. Genuinely — you do not need permission to build,
-refactor, deploy, fix, or ship. The floors are four narrow things, not a
+Everything else is genuinely yours. The floors are four narrow things, not a
 posture.
 
-**Two rules about the floors themselves:**
+**Archiving is the ceiling.** Where you would delete, archive. Reversible, keeps
+the trail, almost always sufficient.
 
-**Archiving is the ceiling.** Where you would delete, archive instead. It is
-reversible, it keeps the audit trail, and it is almost always sufficient.
+**"I could" is not "I may."**
 
-**"I could" is not "I may."** You will sometimes hold a credential that would
-let you cross a floor. That is a fact about tokens, not a permission. If you
-notice you can do something you should not — say so, out loud, and we scope the
-credential down. That is a good day, not an awkward one.
+*Receipt:* an agent told the owner it *couldn't* add someone to an org — framed
+as a permission it lacked. Asked directly, it checked: `admin:org` scope, admin
+role on both orgs, and one of them backing the network the machines live on. It
+could have done it in one call. The honest statement was "I am declining on
+policy," not "I am unable."
+
+If you notice you can do something you should not, say so out loud and we scope
+the credential down. That is a good day, not an awkward one.
 
 ---
 
@@ -58,144 +71,188 @@ credential down. That is a good day, not an awkward one.
 **"Tested", "live", "done" and "working" are claims. Say them only when you have
 just watched the evidence.**
 
-- Not "the tests pass" — the runner's own green line, read after it ran.
-- Not "it deployed" — the live URL answering, after propagation.
-- Not "N tests added" — the count read back from the file, not from the script
-  that claimed to add them.
+*Receipt:* a commit message claimed `selftest 10 -> 17 green`. The real count was
+17 before and 17 after — the insert anchor never matched, and the script printed
+"tests added" unconditionally. A broken invariant shipped **because the test that
+would have caught it never ran**, and nobody noticed because the number came
+from the script's own claim rather than from reading the file.
 
-This is enforced retroactively and without drama: a doc that says something is
-tested when it is not gets corrected, and so does the claim that put it there.
-Nobody is in trouble for a red test. The only thing that costs trust is a green
-that was never measured.
+Read the number back. `grep -c` before and after. The runner's own green line,
+after it ran. The live URL answering, after propagation.
 
-**Corollary — an error is UNKNOWN, not absence.** A check that fails to run has
-not proven anything. A timeout is not "it's down". A permission error is not
-"the file is missing". Retry, distinguish the error text, and report what you
-actually know.
+**An error is UNKNOWN, not absence.**
+
+*Receipt:* an integrity check scored any failed read as "file missing" and
+publicly accused a working, paid product of being undeliverable. Retried three
+times: the genuinely-missing one said *the specified key does not exist* every
+time; the falsely-accused one downloaded 888 MB without complaint.
+
+**A green that means "not checked" is the most dangerous output a check has.**
+
+*Receipt:* a `--source` mode printed `GREEN` having probed nothing. It reports
+`UNKNOWN` now, and the summary refuses to call that run green.
 
 ---
 
 ## 3 · Everything lands
 
-**"I wrote the code" is not done.** A unit of work is done when it is merged,
-deployed, and verified — or when it is written down somewhere with its next step
-and its owner.
+**"I wrote the code" is not done.** Merged, deployed, verified — or written down
+with its next step and its owner. There is no third state.
 
-There is no third option, and this is the rule that keeps the estate from
-silting up. If you have to stop, stop *and log it*. An unfinished thing that is
-recorded is a task; an unfinished thing that is not is a landmine for whoever
-touches that file next.
+*Receipt:* 110 findings sat in a ledger, every one marked `observed`. Not one had
+ever been closed, parked, or answered. A checker whose findings cannot be
+discharged is not a guard, it is a pile — and the day it finds something real, it
+is buried under 109 things everyone has learned to scroll past.
 
-Sweep before you finish for the day. Anything of yours older than three days
-with no next step gets finished or written down.
+The fix: exactly two exits. **Shipped with evidence** (a commit sha, a receipt, a
+deployed version, a URL) or **parked with a reason and a return date.** The tool
+refuses a bare "done" — *"'done' is not a disposition; that is the habit this
+file exists to break."*
+
+Sweep before you finish. Anything of yours older than three days with no next
+step gets finished or written down.
 
 ---
 
 ## 4 · Before you build
 
-**Claim it.** Say what you are building before you start, in whatever channel
-we use for it. Two people building the same thing is the most expensive
-mistake available to a small team, and it is invisible until the merge.
+**Claim it.** Two people building the same thing is the most expensive mistake
+available to a small team, and it is invisible until the merge.
 
 **Search first.** Before writing anything with a *name* — an encoder, a parser,
-a scheduler, a cache, a QR generator — grep the estate for it. This is the rule
-most often broken by the most experienced person in the room, because
-experienced people can write it faster than they can find it. The estate has
-been burned by exactly this: a hand-rolled QR encoder shipped when three already
-existed, and the resulting card would not scan.
+a scheduler, a clusterer — look for the one that exists.
 
-**Route it.** Anything new — a repo, a service, a folder — goes on the map
-before it grows. A thing nobody can find gets rebuilt.
+*Receipt:* beyond the QR encoder above, a moment-clusterer was hand-written with
+a fixed 12-second grid. Its first test showed four people reacting to the same
+thing at 299, 300, 303 and 305 seconds split across a bucket boundary and become
+**two moments of two** instead of one moment of four. A gap-based clusterer
+already in the estate had no boundaries to straddle. A fixed grid splits exactly
+the clusters that matter most.
+
+**Route it.** Anything new goes on the map before it grows. A thing nobody can
+find gets rebuilt.
 
 ---
 
 ## 5 · The gate
 
-Every repo with a `tests/` directory treats it as a **ratchet**: the count only
-goes up.
+Tests are a **ratchet**. The count only goes up.
 
-- Fix a bug → add the assertion that would have caught it, and **watch it go
-  red before you fix it.** An assertion never seen failing has not been proven
-  to work.
-- Run the repo's own gate before pushing. A red gate is not a suggestion and
-  not a rate limit.
-- `--no-verify` is a visible human override for an emergency. It is never a
-  shortcut, and it is never used by an agent.
+- Fix a bug → add the assertion that would have caught it, and **watch it go red
+  before you fix it.** An assertion never seen failing has not been proven to
+  work.
 
-**Write checks that cannot cry wolf.** A guard that fires on innocent work gets
-switched off within a week, and then it protects nothing. Every new check gets
-two controls: one proving it fires on the real thing, one proving it does *not*
-fire on ordinary work. Budget one round for fixing the checker itself — the
-first live run of any new check is a test of the check.
+  *Receipt:* an invariant asserting a stage "can never refuse a shipped build"
+  went red the first time it actually ran — and exposed an adapter call sitting
+  outside its `try`. The bug had already shipped, protected by a test that had
+  never executed.
 
----
+- **Read the helper signature before you write assertions.** `ok(name, boolean)`
+  and `check(name, fn)` differ per repo, and a function literal passed to a
+  boolean helper is **always truthy and passes forever.**
 
-## 6 · The ring-fence
+- A red gate is not a suggestion. `--no-verify` is a visible human override for
+  an emergency, never a shortcut, and never used by an agent.
 
-The company runs two lanes. The boundary is **one-directional**:
+**Write checks that cannot cry wolf.** One control proving it fires on the real
+thing; one proving it does *not* fire on ordinary work.
 
-> The adult vertical may depend on the platform. The platform never contains,
-> depends on, or is branded by the adult vertical.
+*Receipt:* three negative controls in one day were wrong the same way — they
+banned a **word** instead of a **claim**. A rule forbidding "you are human"
+fired on the sentence *forbidding* it. An identity check fired on a possessive.
+A no-false-promises check fired on the honest disclaimer that made the message
+honest. Each one fired on the *right answer*, and each would have got the check
+deleted within a week.
 
-Nothing from that side lands in a Right On Par repo — no hostnames, no room
-names, no identifiers, not in code, not in a comment, not in a commit message.
-If you are unsure whether something crosses, it crosses; ask.
-
-Access to that side is **by explicit grant, never blanket** — including for
-people who have full access here. That is not distrust. There is a third
-person's personal data on that side, and her consent is not the owner's to give
-by proxy.
+**Budget one round for the checker itself.** The first live run of any new check
+is a test of the check.
 
 ---
+
+## 6 · No tenant owns the platform
+
+Right On Par builds `creator-os` — one platform, many creators on it. The rule
+that makes that possible is one-directional:
+
+> A creator's surface may depend on the platform. **The platform never contains,
+> depends on, or is branded by any single creator.**
+
+Concretely, in `creator-os`:
+
+- Every brand string lives in **one** BRAND file. The product name hardcoded
+  anywhere else fails the build.
+- The flagship tenant's identity appears in **no** shipped string — asserted by a
+  negative control, not by intention.
+- Tenant-specific data lives in per-tenant **data**, never welded into shared
+  shell code.
+- Every memory read and write is scoped `tenant:<product>:<creator>:<subject>`,
+  built only through the scoping helper. Multi-tenant isolation holds on day one,
+  or it gets retrofitted through a leak.
+
+Some lanes are fenced harder than others — a creator in a sensitive category, or
+a vertical carrying its own compliance surface, gets its own org and its own
+credentials. Access to a fenced lane is **by explicit grant, never blanket**,
+including for people with full access here. That is not distrust: there is
+another person's data behind that fence, and their consent is not ours to give by
+proxy.
+
+*Receipt:* a fence test was written to ban *naming* the other side's repo. It
+went red immediately — on the migration script that names it **in order to move a
+repo out of it.** The fix, flagged as the violation. It asserts the harmful
+*action* now (a write into the other tree), not the naming. **A rule blunt enough
+to flag the fix is a rule people will disable.**
+
+AI personas and social personalities carry their own rules —
+see [SOCIAL-PERSONALITIES.md](./SOCIAL-PERSONALITIES.md).
 
 ## 7 · How to disagree
 
 State the concern once, plainly, with the evidence. If the owner reaffirms it,
 that is the decision — build it fully and well, and note the concern where it
-will be found later if it turns out to matter.
+will be found if it turns out to matter.
 
-Do not silently comply with something you think is wrong, and do not relitigate
+Do not silently comply with something you think is wrong. Do not relitigate
 something already decided. Both waste the same thing.
 
-**And when you are wrong, say so in one line and move on.** No essay, no
-apology spiral. Correct it, note what changed, keep going. Everyone here breaks
-things; the only unrecoverable move is hiding it.
+**When you are wrong, say so in one line and move on.** No essay, no apology
+spiral. Everyone here breaks things; the only unrecoverable move is hiding it.
 
 ---
 
 ## 8 · What the owner does that you should not copy
 
-This is here because it is genuinely confusing otherwise.
-
 The owner works fast, pivots mid-thought, and goes straight at production. That
-works **for him** because he holds context nobody else has: what every surface
-is for, what is load-bearing, what was already tried and abandoned. He is not
-skipping the rules — he is carrying the map in his head.
+works **for him** because he carries context nobody else has — what every
+surface is for, what is load-bearing, what was tried and abandoned.
 
-You do not have that map yet, and neither did the agents when they started.
-Until you do:
+He is not skipping the rules. He is carrying the map in his head.
+
+Until you have that map:
 
 - Read the surrounding code before you change it.
-- Write down the thing you just learned — the estate's memory is a real asset
-  and it compounds.
-- When you are about to do something fast because it is obviously fine, that is
+- Write down what you just learned. The estate's memory is a real asset and it
+  compounds.
+- When you are about to do something fast because it is obviously fine — that is
   the moment to check.
 
-The rules are the same for everyone. The *style* is his, and it is earned.
+The rules are the same for everyone. The style is his, and it is earned.
 
 ---
 
 ## 9 · Where the rules live
 
-**`rightonpar.com` is the canonical source.** This file, and every copy of these
-rules in a repo, is a mirror of it. If a mirror and the canonical source
-disagree, the canonical source wins and the mirror is drifting — fix the mirror,
-and if it drifted silently, ask why nothing caught it.
+**`getrightonpar.com` is the canonical source.** This file and every copy in a
+repo is a mirror. If a mirror and the canonical source disagree, the canonical
+source wins and the mirror is drifting — fix the mirror, then ask why nothing
+caught it.
 
-Every repo inherits this document automatically via the org's `.github`
-defaults. You do not need to copy it.
+Agents should read `getrightonpar.com/llms.txt`, which carries these rules in the
+form an agent can act on, plus the endpoint to reach us.
+
+Every repo in the org inherits this document automatically. You do not need to
+copy it.
 
 ---
 
-*Last reviewed 2026-09-07. If you read something here that is no longer true,
-that is a defect — say so.*
+*Reviewed 2026-09-07 against the day that produced it. If something here is no
+longer true, that is a defect — say so.*
