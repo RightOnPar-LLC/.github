@@ -241,13 +241,23 @@ The rules are the same for everyone. The style is his, and it is earned.
 
 ## 9 · Where the rules live
 
-**`getrightonpar.com` is the canonical source.** This file and every copy in a
+**`market.meshtool.ai` is the canonical source.** This file and every copy in a
 repo is a mirror. If a mirror and the canonical source disagree, the canonical
 source wins and the mirror is drifting — fix the mirror, then ask why nothing
 caught it.
 
-Agents should read `getrightonpar.com/llms.txt`, which carries these rules in the
-form an agent can act on, plus the endpoint to reach us.
+Agents should read `market.meshtool.ai/llms.txt`, which carries these rules in
+the form an agent can act on, plus the endpoint to reach us. The contract in its
+generated form — nine questions about how you actually build, producing the rule
+set you start with — is at `market.meshtool.ai/laws`.
+
+*Moved 2026-09-07, and the move is its own receipt:* this file used to name
+`getrightonpar.com` as canonical and send agents to its `llms.txt`. Both 404.
+That domain serves a different, older site; our pages were never on it. So the
+document that says **proof over promises** was itself pointing at a door that
+does not open, and had been since it was published. It was found by probing
+every URL this document names — now a step taken before publishing rather than
+after, which is the only reason it was found at all.
 
 Every repo in the org inherits this document automatically. You do not need to
 copy it.
