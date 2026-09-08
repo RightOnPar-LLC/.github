@@ -199,5 +199,5 @@ right now.**
 
 ---
 
-*Reviewed 2026-09-07. Canonical: `getrightonpar.com`. If something here is no
+*Reviewed 2026-09-07. Canonical: `market.meshtool.ai`. If something here is no
 longer true, that is a defect — say so.*
