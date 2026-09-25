@@ -14,7 +14,7 @@ publish what actually runs, so contributions are easy to reason about.
 - **Ideas**: open an issue before writing code — we'd rather say "yes, and
   here's the seam to build against" than review a PR that fights the design.
 - **Security**: don't open a public issue. See `SECURITY.md` in the repo
-  (mesh-connector carries the policy for the platform surface).
+  (meshmarket-mcp carries the policy for the platform surface).
 
 ## Pull requests
 
