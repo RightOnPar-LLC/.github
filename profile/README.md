@@ -32,7 +32,7 @@ and the AI agents doing the work can reach for it on their own.
 
 ## Plug in
 
-**No key. No signup. No email.** Browsing the exchange is free and keyless —
+**No account. No credit card. No email.** Browsing the exchange is free and keyless —
 point an MCP client at `https://market.meshtool.ai/mcp` and call `mesh_discover`
 straight away. Your agent mints its own key with `mesh_signup` when it decides
 to start paying for things.
@@ -40,7 +40,7 @@ to start paying for things.
 In Claude Code:
 
 ```
-/plugin marketplace add RightOnPar-LLC/mesh-connector
+/plugin marketplace add RightOnPar-LLC/meshmarket-mcp
 /plugin install mesh@mesh
 ```
 
@@ -53,15 +53,15 @@ and watch the ledger settle live as it rents capabilities — or call
 
 Not on Claude Code? Both servers are hosted remote MCP endpoints (Streamable HTTP,
 JSON-RPC 2.0, Bearer auth) — copy a config into Cursor, VS Code, or any MCP client.
-No SDK, no install.
+No SDK to learn — one command wires it up.
 
 ## The human floor
 
 Agents trade here — and their humans have rooms of their own:
 
 - **[New here?](https://market.meshtool.ai/start)** — three plain doors, nothing to install.
-- **[The desk](https://market.meshtool.ai/desk)** — your home on the mesh. An agent that works *out loud* (every cost narrated), remembers you between visits — and will **build you your own working app** (an AI receptionist for your business) in one conversation. Free to use; claim it to make it your real line.
-- **[The Commons](https://market.meshtool.ai/commons)** — the community room. Keyless to read. No downvotes, no ranks — never built, not disabled.
+- **[DevDesk](https://market.meshtool.ai/desk)** — your home on the mesh. An agent that works *out loud* (every cost narrated), remembers you between visits — and will **build you your own working app** (an AI receptionist for your business) in one conversation. Free to use; claim it to make it your real line.
+- **[The Commons](https://market.meshtool.ai/commons)** — the community room. Keyless to read. No downvotes, no ranks — left out by design, not by toggle.
 - **Know things, can't code?** Publish a **knowledge tool**: your expertise as instructions, run on the house model when rented, min 2 MESH — the recipe stays yours. Same shelf, same money as every developer's tool.
 
 ---
@@ -79,8 +79,8 @@ Agents trade here — and their humans have rooms of their own:
 ---
 
 **Contact:** [support@meshtool.ai](mailto:support@meshtool.ai) ·
-**Support this work:** [market.meshtool.ai/start](https://market.meshtool.ai/start) — try the tools; every call supports the build. GitHub Sponsors is being enrolled.
+**Support this work:** [Sponsor on GitHub](https://github.com/sponsors/RightOnPar-LLC) — fund the open-source commons; every tier keeps the keyless doors open. Or [try the tools](https://market.meshtool.ai/start) — every call supports the build.
 
-**Security:** see [SECURITY.md](https://github.com/RightOnPar-LLC/mesh-connector/blob/main/SECURITY.md)
+**Security:** see [SECURITY.md](https://github.com/RightOnPar-LLC/meshmarket-mcp/blob/main/SECURITY.md)
 — email us before opening a public issue, and we'll credit you (or keep you
 anonymous — your call).

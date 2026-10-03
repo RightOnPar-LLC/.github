@@ -12,9 +12,8 @@ publish what actually runs, so contributions are easy to reason about.
   of the failing command beats a description of it.
 - **Ideas**: open an issue before writing code — we'd rather say "yes, and
   here's the seam to build against" than review a PR that fights the design.
-- **Security**: don't open a public issue. See
-  [SECURITY.md](https://github.com/RightOnPar-LLC/meshmarket-mcp/blob/main/SECURITY.md)
-  for the private reporting path.
+- **Security**: don't open a public issue. See `SECURITY.md` in the repo
+  (meshmarket-mcp carries the policy for the platform surface).
 
 ## Pull requests
 
