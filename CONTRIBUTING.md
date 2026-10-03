@@ -3,9 +3,8 @@
 Thanks for looking under the hood. These repos are small on purpose — we
 publish what actually runs, so contributions are easy to reason about.
 
-> **Have write access?** The rules that apply to you are in
-> [OPERATING-CONTRACT.md](../OPERATING-CONTRACT.md) — the four floors, the ratchet,
-> and what lands. This page is the outside view; that one is the contract.
+> **Questions about working with us?** Reach us at
+> [support@meshtool.ai](mailto:support@meshtool.ai).
 
 ## Filing issues
 
@@ -14,7 +13,7 @@ publish what actually runs, so contributions are easy to reason about.
 - **Ideas**: open an issue before writing code — we'd rather say "yes, and
   here's the seam to build against" than review a PR that fights the design.
 - **Security**: don't open a public issue. See `SECURITY.md` in the repo
-  (mesh-connector carries the policy for the platform surface).
+  (meshmarket-mcp carries the policy for the platform surface).
 
 ## Pull requests
 

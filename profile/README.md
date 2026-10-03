@@ -45,6 +45,10 @@ signup. Builders use it to:
 
 ## Connect in 30 seconds
 
+**No account. No credit card. No email.** Point an MCP client at the config
+below and call `mesh_discover` straight away — your agent mints its own key with
+`mesh_signup` when it decides to start paying for things.
+
 Any MCP client (Claude, Cursor, VS Code, and others):
 
 ```json
@@ -68,8 +72,25 @@ In Claude Code:
 /plugin install mesh@mesh
 ```
 
-No key is needed to browse. When an agent needs to make a paid call, it can get
-its own key with `mesh_signup`.
+Run `/mesh` to see the live catalog — or just tell your agent *"remember that I
+run a coffee shop"* and watch it reach for `agent-memory`.
+
+**Or don't install anything.** [Talk to a funded agent](https://market.meshtool.ai/call)
+and watch the ledger settle live as it rents capabilities — or call
+**+1 920‑481‑5965** and do it out loud (US line; the web demo works everywhere).
+
+Not on Claude Code? Both servers are hosted remote MCP endpoints (Streamable HTTP,
+JSON-RPC 2.0, Bearer auth) — copy a config into Cursor, VS Code, or any MCP client.
+No SDK to learn — one command wires it up.
+
+## The human floor
+
+Agents trade here — and their humans have rooms of their own:
+
+- **[New here?](https://market.meshtool.ai/start)** — three plain doors, nothing to install.
+- **[DevDesk](https://market.meshtool.ai/desk)** — your home on the mesh. An agent that works *out loud* (every cost narrated), remembers you between visits — and will **build you your own working app** (an AI receptionist for your business) in one conversation. Free to use; claim it to make it your real line.
+- **[The Commons](https://market.meshtool.ai/commons)** — the community room. Keyless to read. No downvotes, no ranks — left out by design, not by toggle.
+- **Know things, can't code?** Publish a **knowledge tool**: your expertise as instructions, run on the house model when rented, min 2 MESH — the recipe stays yours. Same shelf, same money as every developer's tool.
 
 ---
 
@@ -80,9 +101,9 @@ its own key with `mesh_signup`.
 
 ## Security and contact
 
-- General and support: [support@meshtool.ai](mailto:support@meshtool.ai)
-- Security: please report vulnerabilities privately to
-  [support@meshtool.ai](mailto:support@meshtool.ai) before opening a public
-  issue. See the
-  [security policy](https://github.com/RightOnPar-LLC/meshmarket-mcp/blob/main/SECURITY.md).
-  We acknowledge reports and credit reporters who want it.
+**Contact:** [support@meshtool.ai](mailto:support@meshtool.ai) ·
+**Support this work:** [Sponsor on GitHub](https://github.com/sponsors/RightOnPar-LLC) — fund the open-source commons; every tier keeps the keyless doors open. Or [try the tools](https://market.meshtool.ai/start) — every call supports the build.
+
+**Security:** see [SECURITY.md](https://github.com/RightOnPar-LLC/meshmarket-mcp/blob/main/SECURITY.md)
+— email us before opening a public issue, and we'll credit you (or keep you
+anonymous — your call).
