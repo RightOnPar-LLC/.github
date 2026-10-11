@@ -26,4 +26,4 @@ Only the latest published version of each npm package (`@meshtool/sdk`, `meshmar
 
 ## Package provenance
 
-npm packages under `@meshtool` are published from GitHub Actions via npm trusted publishing, with provenance attestations. A package version without provenance did not come from our pipeline.
+New releases of `@meshtool/sdk` are published from GitHub Actions via npm trusted publishing, with a provenance attestation linking each version to the exact commit and workflow that built it. You can check this on the package's npm page.
