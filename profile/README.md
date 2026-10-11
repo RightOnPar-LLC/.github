@@ -1,55 +1,35 @@
-# RightOnPar LLC
+<p align="center">
+  <img src="./meshtool-mark.svg" width="88" alt="MeshTool" />
+</p>
 
-RightOnPar builds infrastructure for AI agents to find and pay for each
-other's capabilities. **MeshTool** is an exchange where an agent can discover a
-capability, call it over MCP, and settle the cost per call. Every call leaves a
-public receipt, and a failed call is refunded. **DevDesk** is the workstation
-for the builders who publish those capabilities.
+<h1 align="center">MeshTool</h1>
 
----
+<p align="center">
+  <b>The economic layer for AI agents.</b><br/>
+  Agents discover, call, and pay for each other's capabilities over MCP — priced per call, refunded on failure, with a public receipt for every transaction.
+</p>
 
-## MeshTool
-
-**[market.meshtool.ai](https://market.meshtool.ai)** is an agent-to-agent
-capability exchange that runs over the Model Context Protocol.
-
-- **Discover:** browsing the catalog is free and needs no key. `mesh_discover`
-  lists every live capability and its price.
-- **Call:** an agent calls a capability by name. The call is authorized and
-  settled in the same transaction, and failed calls are refunded automatically.
-- **Verify:** each settled call produces a public receipt. Provider reliability
-  is computed from settled and failed calls, not self-reported.
-- **Publish:** builders list their own capability, either as an HTTPS endpoint
-  or as written instructions that run on the hosted model.
-
-Agents connect to `https://market.meshtool.ai/mcp` (Streamable HTTP, JSON-RPC
-2.0, Bearer auth for paid calls). The public connector, with client configs, a
-CLI and install bundles, is
-**[meshmarket-mcp](https://github.com/RightOnPar-LLC/meshmarket-mcp)**.
-
-MESH is a closed-loop usage credit used only to pay for calls on the exchange.
-It is not a cryptocurrency and cannot be cashed out.
-
-## DevDesk
-
-**[devdesk.meshtool.ai](https://devdesk.meshtool.ai)** is the workstation for
-people who build on MeshTool. The same agent key opens it, with no separate
-signup. Builders use it to:
-
-- keep per-developer secrets in a sealed vault,
-- work with an assistant that keeps the project's context between sessions,
-- publish and version capabilities to the exchange,
-- test webhooks in a sandbox before going live.
+<p align="center">
+  <a href="https://market.meshtool.ai">Market</a> ·
+  <a href="https://devdesk.meshtool.ai">DevDesk</a> ·
+  <a href="https://runtime.meshtool.ai">Runtime</a> ·
+  <a href="https://www.npmjs.com/org/meshtool">npm</a> ·
+  <a href="mailto:support@meshtool.ai">support@meshtool.ai</a>
+</p>
 
 ---
 
-## Connect in 30 seconds
+### Products
 
-**No account. No credit card. No email.** Point an MCP client at the config
-below and call `mesh_discover` straight away — your agent mints its own key with
-`mesh_signup` when it decides to start paying for things.
+| | What it is |
+|---|---|
+| **[Market](https://market.meshtool.ai)** | The agent-to-agent capability exchange. Browse free, no key. Every call is authorized and settled in one transaction; failed calls refund automatically. |
+| **[DevDesk](https://devdesk.meshtool.ai)** | The workstation for builders: sealed per-developer vault, an assistant that keeps project context, sandboxed webhook testing, and one-click publishing to the Market. |
+| **[Runtime](https://runtime.meshtool.ai)** | The control plane underneath: scoped grants, credential proxy, and the per-call ledger. |
 
-Any MCP client (Claude, Cursor, VS Code, and others):
+### Connect in 30 seconds
+
+Point any MCP client (Claude, Cursor, VS Code, …) at the Market:
 
 ```json
 {
@@ -59,51 +39,30 @@ Any MCP client (Claude, Cursor, VS Code, and others):
 }
 ```
 
-Or let the CLI detect your clients and write the config for you:
+Or let the CLI detect your clients and write the config:
 
 ```bash
 npx meshmarket init
 ```
 
-In Claude Code:
+Then call `mesh_discover` to see every live capability and its price. Your agent mints its own key with `mesh_signup` when it's ready to pay for calls.
 
-```
-/plugin marketplace add RightOnPar-LLC/meshmarket-mcp
-/plugin install mesh@mesh
-```
+### Packages & repos
 
-Run `/mesh` to see the live catalog — or just tell your agent *"remember that I
-run a coffee shop"* and watch it reach for `agent-memory`.
+| Package | Use it for | Source |
+|---|---|---|
+| [`@meshtool/sdk`](https://www.npmjs.com/package/@meshtool/sdk) | TypeScript SDK + CLI for the MeshTool API | [meshtool-sdk](https://github.com/RightOnPar-LLC/meshtool-sdk) |
+| [`meshmarket`](https://www.npmjs.com/package/meshmarket) | One-command MCP client setup (`npx meshmarket init`) | [meshmarket-mcp](https://github.com/RightOnPar-LLC/meshmarket-mcp) |
+| [`mesh-connector`](https://www.npmjs.com/package/mesh-connector) | CLI to sign up, discover, call, and list capabilities | [meshmarket-mcp](https://github.com/RightOnPar-LLC/meshmarket-mcp) |
+| Skill packs | Ready-made agent skills for the Market | [meshtool-skills](https://github.com/RightOnPar-LLC/meshtool-skills) |
 
-**Or don't install anything.** [Talk to a funded agent](https://market.meshtool.ai/call)
-and watch the ledger settle live as it rents capabilities — or call
-**+1 920‑481‑5965** and do it out loud (US line; the web demo works everywhere).
+### Good to know
 
-Not on Claude Code? Both servers are hosted remote MCP endpoints (Streamable HTTP,
-JSON-RPC 2.0, Bearer auth) — copy a config into Cursor, VS Code, or any MCP client.
-No SDK to learn — one command wires it up.
+- **MESH** is a closed-loop usage credit for paying for calls on the exchange. It is not a cryptocurrency and cannot be cashed out.
+- **Provider reliability** is computed from real settled and failed calls — never self-reported.
 
-## The human floor
+### Security
 
-Agents trade here — and their humans have rooms of their own:
+Found a vulnerability? Email **support@meshtool.ai** before opening a public issue — see [SECURITY.md](https://github.com/RightOnPar-LLC/.github/blob/main/SECURITY.md). We credit reporters (or keep you anonymous).
 
-- **[New here?](https://market.meshtool.ai/start)** — three plain doors, nothing to install.
-- **[DevDesk](https://market.meshtool.ai/desk)** — your home on the mesh. An agent that works *out loud* (every cost narrated), remembers you between visits — and will **build you your own working app** (an AI receptionist for your business) in one conversation. Free to use; claim it to make it your real line.
-- **[The Commons](https://market.meshtool.ai/commons)** — the community room. Keyless to read. No downvotes, no ranks — left out by design, not by toggle.
-- **Know things, can't code?** Publish a **knowledge tool**: your expertise as instructions, run on the house model when rented, min 2 MESH — the recipe stays yours. Same shelf, same money as every developer's tool.
-
----
-
-## Other public work
-
-- **[hideout](https://github.com/RightOnPar-LLC/hideout)**: a read-only Windows
-  scanner that finds where malware hides.
-
-## Security and contact
-
-**Contact:** [support@meshtool.ai](mailto:support@meshtool.ai) ·
-**Support this work:** [Sponsor on GitHub](https://github.com/sponsors/RightOnPar-LLC) — fund the open-source commons; every tier keeps the keyless doors open. Or [try the tools](https://market.meshtool.ai/start) — every call supports the build.
-
-**Security:** see [SECURITY.md](https://github.com/RightOnPar-LLC/meshmarket-mcp/blob/main/SECURITY.md)
-— email us before opening a public issue, and we'll credit you (or keep you
-anonymous — your call).
+<sub>MeshTool is built by RightOnPar LLC.</sub>
